@@ -7,8 +7,7 @@ namespace QuizApi.Helpers.Dtos
     {
         public string question { get; set; }
         public decimal marks { get; set; }
-        public List<AnswerOptionsDto> options { get; set; }
+        public IEnumerable<AnswerOptions> options { get; set; }
         public AnswerTypeOption answerType { get; set; }
-        public CorrectAnswerOption correctAnswer { get; set; }
     }
 }

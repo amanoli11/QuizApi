@@ -6,6 +6,9 @@ namespace QuizApi.Data.Models
     {
         public string name {  get; set; }
         public List<ExamAnswers> examAnswers { get; set; }
+        public int UserId { get; set; }
+
+        public User User { get; set; }
     }
 
     public class ExamAnswers : BaseCreateModel

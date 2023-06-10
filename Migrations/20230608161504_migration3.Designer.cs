@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using QuizApi.Data.DatabaseContext;
@@ -11,9 +12,11 @@ using QuizApi.Data.DatabaseContext;
 namespace QuizApi.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230608161504_migration3")]
+    partial class migration3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,15 +63,10 @@ namespace QuizApi.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("name")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Exams");
                 });
@@ -116,9 +114,6 @@ namespace QuizApi.Migrations
                     b.Property<int>("correctAnswer")
                         .HasColumnType("integer");
 
-                    b.Property<int>("course")
-                        .HasColumnType("integer");
-
                     b.Property<decimal>("marks")
                         .HasColumnType("numeric");
 
@@ -157,17 +152,6 @@ namespace QuizApi.Migrations
                     b.HasOne("QuizApi.Data.Models.Question", null)
                         .WithMany("options")
                         .HasForeignKey("QuestionId");
-                });
-
-            modelBuilder.Entity("QuizApi.Data.Models.Exam", b =>
-                {
-                    b.HasOne("QuizApi.Data.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("QuizApi.Data.Models.ExamAnswers", b =>
