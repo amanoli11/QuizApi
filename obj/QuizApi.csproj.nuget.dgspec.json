@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "G:\\C#\\QuizApi\\QuizApi.csproj": {}
+    "G:\\QuizApi\\QuizApi.csproj": {}
   },
   "projects": {
-    "G:\\C#\\QuizApi\\QuizApi.csproj": {
+    "G:\\QuizApi\\QuizApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\C#\\QuizApi\\QuizApi.csproj",
+        "projectUniqueName": "G:\\QuizApi\\QuizApi.csproj",
         "projectName": "QuizApi",
-        "projectPath": "G:\\C#\\QuizApi\\QuizApi.csproj",
+        "projectPath": "G:\\QuizApi\\QuizApi.csproj",
         "packagesPath": "C:\\Users\\Aman\\.nuget\\packages\\",
-        "outputPath": "G:\\C#\\QuizApi\\obj\\",
+        "outputPath": "G:\\QuizApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Aman\\AppData\\Roaming\\NuGet\\NuGet.Config",

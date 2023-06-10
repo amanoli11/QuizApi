@@ -20,7 +20,7 @@ namespace QuizApi.BusinessAndRepository.Repositories
 
         public async Task<IEnumerable<QuestionDto>> GetQuestionList(CourseOption course)
         {
-            var AllQuestions = await _database.Questions.Where(x => x.course == course).ToListAsync();
+            var AllQuestions = await _database.Questions.Where(x => x.course == course).Include(i => i.options).ToListAsync();
             return _mapper.Map<IEnumerable<QuestionDto>>(AllQuestions);
         }
     }

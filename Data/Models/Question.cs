@@ -9,7 +9,7 @@ namespace QuizApi.Data.Models
     {
         public string question { get; set; }
         public decimal marks { get; set; }
-        public IEnumerable<AnswerOptions> options { get; set; }
+        public ICollection<AnswerOptions> options { get; set; }
         public AnswerTypeOption answerType { get; set; }
         public CorrectAnswerOption correctAnswer { get; set; }
         public CourseOption course { get; set; }
