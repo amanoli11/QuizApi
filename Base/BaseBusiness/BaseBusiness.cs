@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using QuizApi.Base.IBaseBusiness;
 using QuizApi.Base.IBaseRepository;
+using QuizApi.Helpers.Dtos;
 
 namespace QuizApi.Base.BaseBusiness
 {
@@ -15,24 +16,24 @@ namespace QuizApi.Base.BaseBusiness
             _baseRepository = baseRepository;
         }
 
-        public virtual async Task<IEnumerable<T>> Get()
+        public virtual async Task<ResponseDto<T>> Create(T entity)
+        {
+            return await _baseRepository.Create(entity);
+        }
+
+        public virtual async Task<ResponseDto<IEnumerable<T>>> Get()
         {
             return await _baseRepository.Get();
         }
 
-        public virtual async Task<T> Get(int id)
+        public virtual async Task<ResponseDto<T>> Get(int id)
         {
             return await _baseRepository.Get(id);
         }
 
-        public virtual void Create(T entity)
+        public virtual async Task<ResponseDto<T>> Update(T entity)
         {
-            _baseRepository.Create(entity);
-        }
-
-        public virtual async Task<T> Update(int id, T entity)
-        {
-            return await _baseRepository.Update(id, entity);
+            return await _baseRepository.Update(entity);
         }
     }
 }

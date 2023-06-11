@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using QuizApi.Base.IBaseBusiness;
+using QuizApi.Helpers.Dtos;
 
 namespace QuizApi.Base.BaseController
 {
@@ -18,27 +19,27 @@ namespace QuizApi.Base.BaseController
         }
 
         [HttpGet]
-        public virtual async Task<IEnumerable<TModel>> Get()
+        public virtual async Task<ResponseDto<IEnumerable<TModel>>> Get()
         {
             return await _baseBusiness.Get();
         }
 
         [HttpGet("{id}")]
-        public virtual async Task<TModel> Get(int id)
+        public virtual async Task<ResponseDto<TModel>> Get(int id)
         {
             return await _baseBusiness.Get(id);
         }
 
         [HttpPost]
-        public virtual void Create(TModel entity)
+        public virtual Task<ResponseDto<TModel>> Create(TModel entity)
         {
-            _baseBusiness.Create(entity);
+            return _baseBusiness.Create(entity);
         }
 
-        [HttpPut("{id}")]
-        public virtual async Task<TModel> Update(int id, TModel entity)
+        [HttpPost]
+        public virtual async Task<ResponseDto<TModel>> Update(TModel entity)
         {
-            return await _baseBusiness.Update(id, entity);
+            return await _baseBusiness.Update(entity);
         }
     }
 }
