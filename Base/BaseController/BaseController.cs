@@ -42,3 +42,13 @@ namespace QuizApi.Base.BaseController
         }
     }
 }
+
+
+// public class ProductController : BaseApiController<Model>
+// {
+//     public ProductController(ProductBusiness business) : base(business)
+//     {
+//     }
+
+//     // Implement any additional endpoints or actions specific to the Product entity
+// }

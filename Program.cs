@@ -4,6 +4,7 @@ using QuizApi.BusinessAndRepository.Business;
 using QuizApi.BusinessAndRepository.IBusiness;
 using QuizApi.BusinessAndRepository.IRepositories;
 using QuizApi.BusinessAndRepository.Repositories;
+using QuizApi.CustomMiddlewares;
 using QuizApi.Data.DatabaseContext;
 using QuizApi.Helpers.Automapper;
 
@@ -30,6 +31,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<GlobalErrorHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 
