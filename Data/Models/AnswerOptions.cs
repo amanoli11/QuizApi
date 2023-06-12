@@ -4,9 +4,7 @@ namespace QuizApi.Data.Models
 {
     public class AnswerOptions : BaseCreateModel
     {
-        public string optionA { get; set; }
-        public string optionB { get; set; }
-        public string optionC { get; set; }
-        public string optionD { get; set; }
+        public string OptionLabel { get; set; }
+        public bool IsCorrectAnswer { get; set; }
     }
 }

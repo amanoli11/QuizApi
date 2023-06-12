@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using QuizApi.Base.BaseController;
 using QuizApi.BusinessAndRepository.IBusiness;
 using QuizApi.Data.Models;
 using QuizApi.Helpers.Dtos;
@@ -8,10 +9,10 @@ namespace QuizApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class QuestionController : Controller
+    public class QuestionController : BaseController<Question>
     {
-        private readonly IQuestionBusiness _question;
-        public QuestionController(IQuestionBusiness question)
+        private readonly IQuestionBusiness<Question> _question;
+        public QuestionController(IQuestionBusiness<Question> question) : base(question)
         {
             _question = question;
         }

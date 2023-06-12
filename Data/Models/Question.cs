@@ -7,11 +7,14 @@ namespace QuizApi.Data.Models
 {
     public class Question : BaseCreateModel
     {
-        public string question { get; set; }
-        public decimal marks { get; set; }
-        public ICollection<AnswerOptions> options { get; set; }
-        public AnswerTypeOption answerType { get; set; }
-        public CorrectAnswerOption correctAnswer { get; set; }
-        public CourseOption course { get; set; }
+        public string QuestionLabel { get; set; }
+        public decimal Marks { get; set; }
+        public ICollection<AnswerOptions> Options { get; set; }
+        public AnswerTypeOption AnswerType { get; set; }
+        public QuesetionAskedFrequencyOption AskedFrequency { get; set; }
+        public QuestionTypeOption QuestionType { get; set; }
+        public int CourseId { get; set; }
+
+        public Course Course { get; set; }
     }
 }
