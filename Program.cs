@@ -6,6 +6,7 @@ using QuizApi.BusinessAndRepository.IRepositories;
 using QuizApi.BusinessAndRepository.Repositories;
 using QuizApi.CustomMiddlewares;
 using QuizApi.Data.DatabaseContext;
+using QuizApi.Data.Models;
 using QuizApi.Helpers.Automapper;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,9 @@ builder.Services.AddAutoMapper(typeof(AutomapperProfiles).Assembly);
 
 builder.Services.AddScoped<IQuestionBusiness, QuestionBusiness>();
 builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
+
+builder.Services.AddScoped(typeof(ICourseBusiness<>), typeof(CourseBusiness<>));
+builder.Services.AddScoped(typeof(ICourseRepository<>), typeof(CourseRepository<>));
 
 
 var app = builder.Build();

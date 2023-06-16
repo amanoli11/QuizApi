@@ -3,6 +3,7 @@
     public enum AnswerTypeOption
     {
         Single = 1,
-        Multiple
+        Multiple,
+        FreeText
     }
 }

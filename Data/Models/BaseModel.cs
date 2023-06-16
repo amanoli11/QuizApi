@@ -2,10 +2,12 @@
 
 namespace QuizApi.Data.Models
 {
-    public class BaseCreateModel
+    public class BaseModel
     {
         [Key]
         [Required]
         public int Id { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace QuizApi.Helpers.Automapper
     {
         public AutomapperProfiles()
         {
-            CreateMap<Question, QuestionDto>();
+            CreateMap<Question, GetQuestionDto>();
         }
     }
 }

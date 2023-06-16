@@ -47,7 +47,7 @@ namespace QuizApi.CustomMiddlewares
                     status = HttpStatusCode.NotFound;
                     break;
                 default:
-                    message = "Something went wrong. Please contact the service team.";
+                    message = exception.Message; // "Something went wrong. Please contact the service team.";
                     status = HttpStatusCode.InternalServerError;
                     break;
             }

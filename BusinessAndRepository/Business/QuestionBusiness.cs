@@ -13,7 +13,7 @@ namespace QuizApi.BusinessAndRepository.Business
             _question = question;
         }
 
-        public async Task<IEnumerable<QuestionDto>> GetQuestionList(CourseOption course)
+        public async Task<IEnumerable<GetQuestionDto>> GetQuestionList(CourseOption course)
         {
             return await _question.GetQuestionList(course);
             //throw new NotImplementedException();

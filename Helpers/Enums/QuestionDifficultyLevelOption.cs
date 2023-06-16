@@ -1,6 +1,6 @@
 ﻿namespace QuizApi.Helpers.Enums
 {
-    public enum QuestionTypeOption
+    public enum QuestionDifficultyLevelOption
     {
         Easy = 1,
         Intermediate,

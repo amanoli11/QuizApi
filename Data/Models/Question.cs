@@ -5,14 +5,14 @@ using System.Reflection.Metadata;
 
 namespace QuizApi.Data.Models
 {
-    public class Question : BaseCreateModel
+    public class Question : BaseModel
     {
         public string QuestionLabel { get; set; }
         public decimal Marks { get; set; }
         public ICollection<AnswerOptions> Options { get; set; }
         public AnswerTypeOption AnswerType { get; set; }
         public QuesetionAskedFrequencyOption AskedFrequency { get; set; }
-        public QuestionTypeOption QuestionType { get; set; }
+        public QuestionDifficultyLevelOption QuestionType { get; set; }
         public int CourseId { get; set; }
 
         public Course Course { get; set; }

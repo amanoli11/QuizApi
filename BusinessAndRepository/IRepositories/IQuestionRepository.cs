@@ -6,6 +6,6 @@ namespace QuizApi.BusinessAndRepository.IRepositories
 {
     public interface IQuestionRepository
     {
-        public Task<IEnumerable<QuestionDto>> GetQuestionList(CourseOption course);
+        public Task<IEnumerable<GetQuestionDto>> GetQuestionList(CourseOption course);
     }
 }

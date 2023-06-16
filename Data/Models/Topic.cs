@@ -1,6 +1,6 @@
 ﻿namespace QuizApi.Data.Models
 {
-    public class Topic : BaseCreateModel
+    public class Topic : BaseModel
     {
         public string Name { get; set; }
     }

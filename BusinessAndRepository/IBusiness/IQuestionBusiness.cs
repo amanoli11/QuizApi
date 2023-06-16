@@ -5,8 +5,8 @@ using QuizApi.Helpers.Enums;
 
 namespace QuizApi.BusinessAndRepository.IBusiness
 {
-    public interface IQuestionBusiness<T>: IBaseBusiness<T> where T : class
+    public interface IQuestionBusiness //<T> : IBaseBusiness<T> where T : class
     {
-        public Task<IEnumerable<QuestionDto>> GetQuestionList(CourseOption course);
+        public Task<IEnumerable<GetQuestionDto>> GetQuestionList(CourseOption course);
     }
 }

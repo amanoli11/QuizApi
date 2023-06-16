@@ -2,10 +2,9 @@
 
 namespace QuizApi.Data.Models
 {
-    public class User : BaseCreateModel
+    public class User : BaseModel
     {
-        public string firstName { get; set; }
-        public string lastName { get; set; }
-        public DateTime createdAt { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 }

@@ -3,11 +3,35 @@ using QuizApi.Helpers.Enums;
 
 namespace QuizApi.Helpers.Dtos
 {
-    public class QuestionDto : BaseDto
+    public class CreateQuestionDto
     {
-        public string question { get; set; }
-        public decimal marks { get; set; }
-        public IEnumerable<AnswerOptions> options { get; set; }
-        public AnswerTypeOption answerType { get; set; }
+        public string QuestionLabel { get; set; }
+        public decimal Marks { get; set; }
+        public IEnumerable<AnswerOptions> Options { get; set; }
+        public AnswerTypeOption AnswerType { get; set; }
+        public QuesetionAskedFrequencyOption AskedFrequency { get; set; }
+        public QuestionDifficultyLevelOption QuestionType { get; set; }
+        public int CourseId { get; set; }
+    }
+
+    public class UpdateQuestionDto : BaseDto
+    {
+        public string QuestionLabel { get; set; }
+        public decimal Marks { get; set; }
+        public IEnumerable<AnswerOptions> Options { get; set; }
+        public AnswerTypeOption AnswerType { get; set; }
+        public QuesetionAskedFrequencyOption AskedFrequency { get; set; }
+        public QuestionDifficultyLevelOption QuestionType { get; set; }
+        public int CourseId { get; set; }
+    }
+
+    public class GetQuestionDto : BaseGetDTO {
+        public string QuestionLabel { get; set; }
+        public decimal Marks { get; set; }
+        public IEnumerable<AnswerOptions> Options { get; set; }
+        public AnswerTypeOption AnswerType { get; set; }
+        public QuesetionAskedFrequencyOption AskedFrequency { get; set; }
+        public QuestionDifficultyLevelOption QuestionType { get; set; }
+        public int CourseId { get; set; }
     }
 }
