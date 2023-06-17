@@ -22,29 +22,29 @@ namespace QuizApi.Base.BaseController
         }
 
         [HttpGet]
-        public virtual async Task<ResponseDto<IEnumerable<TModel>>> Get()
+        public virtual async Task<ResponseDto<IEnumerable<TGetDto>>> Get()
         {
             return await _baseBusiness.Get();
         }
 
         [HttpGet("{id}")]
-        public virtual async Task<ResponseDto<TModel>> Get(int id)
+        public virtual async Task<ResponseDto<TGetDto>> Get(int id)
         {
             return await _baseBusiness.Get(id);
         }
 
         [HttpPost]
         [Route("Create")]
-        public virtual async Task<ResponseDto<TModel>> Create(TModel entity)
+        public virtual async Task<ResponseDto<string>> Create(TCreateDto entity)
         {
             return await _baseBusiness.Create(entity);
         }
 
         [HttpPost]
         [Route("Update")]
-        public virtual async Task<ResponseDto<TModel>> Update(TModel entity)
+        public virtual async Task<ResponseDto<string>> Update(int id, TUpdateDto entity)
         {
-            return await _baseBusiness.Update(entity);
+            return await _baseBusiness.Update(id, entity);
         }
     }
 }

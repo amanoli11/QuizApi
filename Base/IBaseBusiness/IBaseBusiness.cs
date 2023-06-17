@@ -9,9 +9,9 @@ namespace QuizApi.Base.IBaseBusiness
 {
     public interface IBaseBusiness<TModel, TCreateDto, TUpdateDto, TGetDto>
     {
-        public Task<ResponseDto<IEnumerable<TModel>>> Get();
-        public Task<ResponseDto<TModel>> Get(int id);
-        public Task<ResponseDto<TModel>> Create(TModel entity);
-        public Task<ResponseDto<TModel>> Update(TModel entity);
+        public Task<ResponseDto<IEnumerable<TGetDto>>> Get();
+        public Task<ResponseDto<TGetDto>> Get(int id);
+        public Task<ResponseDto<string>> Create(TCreateDto entity);
+        public Task<ResponseDto<string>> Update(int id, TUpdateDto entity);
     }
 }

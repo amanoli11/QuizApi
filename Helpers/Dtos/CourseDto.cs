@@ -1,16 +1,16 @@
 ﻿namespace QuizApi.Helpers.Dtos
 {
-    public class CreateCourseDto : ICourseDto
+    public class CreateCourseDto : BaseCreateDto, ICourseDto
     {
         public string Name { get; set; }
     }
 
-    public class GetCourseDto : BaseDto, ICourseDto
+    public class GetCourseDto : BaseGetDTO, ICourseDto
     {
         public string Name { get; set; }
     }
 
-    public class UpdateCourseDto : BaseDto, ICourseDto
+    public class UpdateCourseDto : BaseUpdateDto, ICourseDto
     {
         public string Name { get; set; }
     }

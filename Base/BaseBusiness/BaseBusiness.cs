@@ -21,24 +21,24 @@ namespace QuizApi.Base.BaseBusiness
             _baseRepository = baseRepository;
         }
 
-        public virtual async Task<ResponseDto<TModel>> Create(TModel entity)
+        public virtual async Task<ResponseDto<string>> Create(TCreateDto entity)
         {
             return await _baseRepository.Create(entity);
         }
 
-        public virtual async Task<ResponseDto<IEnumerable<TModel>>> Get()
+        public virtual async Task<ResponseDto<IEnumerable<TGetDto>>> Get()
         {
             return await _baseRepository.Get();
         }
 
-        public virtual async Task<ResponseDto<TModel>> Get(int id)
+        public virtual async Task<ResponseDto<TGetDto>> Get(int id)
         {
             return await _baseRepository.Get(id);
         }
 
-        public virtual async Task<ResponseDto<TModel>> Update(TModel entity)
+        public virtual async Task<ResponseDto<string>> Update(int id, TUpdateDto entity)
         {
-            return await _baseRepository.Update(entity);
+            return await _baseRepository.Update(id, entity);
         }
     }
 }

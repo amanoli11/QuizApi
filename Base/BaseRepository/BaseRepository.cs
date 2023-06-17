@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using QuizApi.Base.IBaseRepository;
 using QuizApi.Data.DatabaseContext;
+using QuizApi.Data.Models;
 using QuizApi.Exceptions;
 using QuizApi.Helpers.Dtos;
 using QuizApi.Helpers.Enums;
@@ -15,27 +16,30 @@ namespace QuizApi.Base.BaseRepository
 {
     public abstract class BaseRepository<TModel, TCreateDto, TUpdateDto, TGetDto> 
         : IBaseRepository<TModel, TCreateDto, TUpdateDto, TGetDto>
-        where TModel : class
-        where TCreateDto : class
-        where TUpdateDto : class
-        where TGetDto : class
+        where TModel : BaseModel
+        where TCreateDto : BaseCreateDto
+        where TUpdateDto : BaseUpdateDto
+        where TGetDto : BaseGetDTO
     {
-        private readonly IMapper _mapper;
         private readonly DatabaseContext _database;
         private DbSet<TModel> table;
         
-        public BaseRepository(DatabaseContext database, IMapper mapper)
+        protected BaseRepository(DatabaseContext database, IMapper mapper)
         {
             _database = database;
             table = _database.Set<TModel>();
-            _mapper = mapper; // IF NEED TO USE AUTOMAPPER WHEN ENHANCING THE BASE REPO.
         }
 
-        public virtual async Task<ResponseDto<TModel>> Create(TModel entity)
+        public virtual async Task<ResponseDto<string>> Create(TCreateDto entity)
         {
-            await table.AddAsync(entity);
+            var saveData = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<TCreateDto, TModel>();
+            });
+            var mapper = saveData.CreateMapper();
+            await table.AddAsync(mapper.Map<TModel>(entity));
             await _database.SaveChangesAsync();
-            return new ResponseDto<TModel>()
+            return new ResponseDto<string>()
             {
                 message = "Data saved successfully",
                 data = null,
@@ -43,35 +47,73 @@ namespace QuizApi.Base.BaseRepository
             };
         }
 
-        public virtual async Task<ResponseDto<IEnumerable<TModel>>> Get()
+        public virtual async Task<ResponseDto<IEnumerable<TGetDto>>> Get()
         {
             var AllData = await table.ToListAsync();
             if (AllData.Count == 0) throw new DataNotFoundException("No data found");
-            return new ResponseDto<IEnumerable<TModel>>()
+
+            var getData = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<TModel, TGetDto>();
+            });
+            var mapper = getData.CreateMapper();
+
+            return new ResponseDto<IEnumerable<TGetDto>>()
             {
                 message = "Data fetched successfully",
-                data = AllData,
+                data = mapper.Map<IEnumerable<TGetDto>>(AllData),
                 responseStatusCode = ResponseStatusCodeOption.Success
             };
         }
 
-        public virtual async Task<ResponseDto<TModel>> Get(int Id)
+        public virtual async Task<ResponseDto<TGetDto>> Get(int Id)
         {
             var GetById = await table.FindAsync(Id);
-            return new ResponseDto<TModel>()
+            var GetData = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<TModel, TGetDto>();
+            });
+
+            var mapper = GetData.CreateMapper();
+
+            return new ResponseDto<TGetDto>()
             {
                 message = "Data fetched successfully",
-                data = GetById,
+                data = mapper.Map<TGetDto>(GetById),
                 responseStatusCode = ResponseStatusCodeOption.Success
             };
         }
 
-        public virtual async Task<ResponseDto<TModel>> Update(TModel entity)
+        public virtual async Task<ResponseDto<string>> Update(int id, TUpdateDto entity)
         {
-            table.Attach(entity);
-            _database.Entry(entity).State = EntityState.Modified;
+            var row = await table.FindAsync(id);
             await _database.SaveChangesAsync();
-            return new ResponseDto<TModel>()
+            if (row == null)
+            {
+                throw new DataNotFoundException("Row does not exists");
+            }
+
+            var UpdateMapper = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<TUpdateDto, TModel>();
+            });
+
+            var UpdateData = UpdateMapper.CreateMapper().Map<TModel>(entity);
+            UpdateData.Id = row.Id;
+            UpdateData.CreatedAt = row.CreatedAt; //row.CreatedAt;
+            UpdateData.UpdatedAt = DateTime.Now.ToUniversalTime();
+
+            try
+            {
+                table.Update(UpdateData);
+                await _database.SaveChangesAsync();
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return new ResponseDto<string>()
             {
                 message = "Data updated successully",
                 data = null,
