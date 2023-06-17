@@ -6,11 +6,11 @@ using QuizApi.Helpers.Dtos;
 
 namespace QuizApi.Base.IBaseRepository
 {
-    public interface IBaseRepository<T>
+    public interface IBaseRepository<TModel, TCreateDto, TUpdateDto, TGetDto>
     {
-        public Task<ResponseDto<IEnumerable<T>>> Get();
-        public Task<ResponseDto<T>> Get(int id);
-        public Task<ResponseDto<T>> Create(T entity);
-        public Task<ResponseDto<T>> Update(T entity);
+        public Task<ResponseDto<IEnumerable<TModel>>> Get();
+        public Task<ResponseDto<TModel>> Get(int id);
+        public Task<ResponseDto<TModel>> Create(TModel entity);
+        public Task<ResponseDto<TModel>> Update(TModel entity);
     }
 }

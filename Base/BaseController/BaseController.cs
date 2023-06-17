@@ -9,10 +9,14 @@ using QuizApi.Helpers.Dtos;
 
 namespace QuizApi.Base.BaseController
 {
-    public abstract class BaseController<TModel> : Controller, IBaseBusiness<TModel> where TModel : class
+    public abstract class BaseController<TModel, TCreateDto, TUpdateDto, TGetDto> : Controller
+        where TModel : class
+        where TCreateDto : class
+        where TUpdateDto : class
+        where TGetDto : class
     {
-        protected readonly IBaseBusiness<TModel> _baseBusiness;
-        public BaseController(IBaseBusiness<TModel> baseBusiness)
+        protected readonly IBaseBusiness<TModel, TCreateDto, TUpdateDto, TGetDto> _baseBusiness;
+        public BaseController(IBaseBusiness<TModel, TCreateDto, TUpdateDto, TGetDto> baseBusiness)
         {
             _baseBusiness = baseBusiness;
         }

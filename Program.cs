@@ -23,8 +23,8 @@ builder.Services.AddAutoMapper(typeof(AutomapperProfiles).Assembly);
 builder.Services.AddScoped<IQuestionBusiness, QuestionBusiness>();
 builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
 
-builder.Services.AddScoped(typeof(ICourseBusiness<>), typeof(CourseBusiness<>));
-builder.Services.AddScoped(typeof(ICourseRepository<>), typeof(CourseRepository<>));
+builder.Services.AddScoped<ICourseBusiness, CourseBusiness>();
+builder.Services.AddScoped<ICourseRepository, CourseRepository>();
 
 
 var app = builder.Build();
